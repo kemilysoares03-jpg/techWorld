@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TechWorld - O Futuro da Tecnologia</title>
+    <style>
+        /* ===== RESET ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a2e 0%, #1a1a4e 100%);
+            color: #fff;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background: rgba(10, 10, 46, 0.95);
+            padding: 15px 0;
+            border-bottom: 3px solid #00d4ff;
+            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #00d4ff;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+            cursor: pointer;
+        }
+
+        .logo span {
+            color: #fff;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: #00d4ff;
+            color: #0a0a2e;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+
+        /* Menu Hamburguer */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .menu-toggle span {
+            width: 28px;
+            height: 3px;
+            background: #fff;
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 6px);
+        }
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -6px);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            background: radial-gradient(circle at 30% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%);
+        }
+
+        .hero h1 {
+            font-size: 52px;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #00d4ff, #7b2ffc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: #b0b0d0;
+        }
+
+        /* ===== BOTÃO ===== */
+        .btn {
+            display: inline-block;
+            background: linear-gradient(45deg, #00d4ff, #7b2ffc);
+            color: #fff;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 40px rgba(0, 212, 255, 0.5);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #00d4ff;
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: #00d4ff;
+            color: #0a0a2e;
+        }
+
+        /* ===== SEÇÃO TÍTULO ===== */
+        .section-title {
+            font-size: 36px;
+            text-align: center;
+            margin: 60px 0 40px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #00d4ff, #7b2ffc);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #b0b0d0;
+            margin-bottom: 30px;
+            font-size: 18px;
+        }
+
+        /* ===== FILTRO ===== */
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.05);
+            color: #b0b0d0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 8px 24px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #00d4ff;
+            color: #0a0a2e;
+            border-color: #00d4ff;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+        }
+
+        /* ===== ARTICLES ===== */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .article-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-card:hover {
+            transform: translateY(-10px);
+            border-color: #00d4ff;
+            box-shadow: 0 10px 40px rgba(0, 212, 255, 0.2);
+        }
+
+        .article-card.hidden {
+            display: none;
+        }
+
+        .article-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .article-card h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #00d4ff;
+        }
+
+        .article-card p {
+            color: #b0b0d0;
+            margin-bottom: 15px;
+            flex: 1;
+        }
+
+        .article-card .article-tag {
+            display: inline-block;
+            background: rgba(0, 212, 255, 0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: #00d4ff;
+            align-self: flex-start;
+        }
+
+        .article-card .read-time {
+            color: #8888aa;
+            font-size: 12px;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* ===== VÍDEOS ===== */
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .video-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            border-color: #7b2ffc;
+            box-shadow: 0 10px 40px rgba(123, 47, 252, 0.2);
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-info {
+            padding: 20px;
+        }
+
+        .video-info h4 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: #00d4ff;
+        }
+
+        .video-info p {
+            color: #b0b0d0;
+            font-size: 14px;
+        }
+
+        .video-tag {
+            display: inline-block;
+            background: rgba(123, 47, 252, 0.2);
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            color: #7b2ffc;
+            margin-top: 8px;
+        }
+
+        /* ===== STATS BANNER ===== */
+        .stats-banner {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            padding: 30px 20px;
+            margin: 40px 0;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+
+        .stats-banner .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            color: #00d4ff;
+        }
+
+        .stats-banner .stat-label {
+            color: #8888aa;
+            font-size: 14px;
+        }
+
+        /* ===== NEWSLETTER ===== */
+        .newsletter {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(123, 47, 252, 0.1));
+            border-radius: 20px;
+            padding: 50px;
+            text-align: center;
+            margin: 60px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .newsletter h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .newsletter p {
+            color: #b0b0d0;
+            margin-bottom: 25px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .newsletter-form input {
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            width: 300px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+            border-color: #00d4ff;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+        }
+        .newsletter-form input::placeholder {
+            color: #8888aa;
+        }
+
+        .toast {
+            margin-top: 20px;
+            padding: 12px 24px;
+            border-radius: 10px;
+            background: rgba(0, 212, 255, 0.2);
+            border: 1px solid #00d4ff;
+            color: #00d4ff;
+            display: none;
+        }
+
+        .toast.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== PÁGINAS ===== */
+        .page-content {
+            display: none;
+            padding: 40px 0;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        .page-content h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #00d4ff, #7b2ffc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .page-content p {
+            color: #b0b0d0;
+            font-size: 18px;
+            max-width: 700px;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: rgba(10, 10, 46, 0.9);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px 0;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-column h4 {
+            color: #00d4ff;
+            margin-bottom: 15px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        .footer-column ul a {
+            color: #b0b0d0;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .footer-column ul a:hover {
+            color: #00d4ff;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: #666688;
+            font-size: 14px;
+        }
+
+        /* ===== RESPONSIVO ===== */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: rgba(10, 10, 46, 0.98);
+                padding: 20px;
+                gap: 15px;
+                border-bottom: 3px solid #00d4ff;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links a {
+                text-align: center;
+                padding: 12px;
+            }
+
+            .newsletter-form input {
+                width: 100%;
+            }
+
+            .newsletter {
+                padding: 30px 20px;
+            }
+
+            .videos-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-banner {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== HEADER ===== -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo" onclick="showPage('home')">Tech<span>World</span></div>
+                <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+                <ul class="nav-links" id="navLinks">
+                    <li><a class="active" onclick="showPage('home')">Início</a></li>
+                    <li><a onclick="showPage('artigos')">Artigos</a></li>
+                    <li><a onclick="showPage('videos')">Vídeos</a></li>
+                    <li><a onclick="showPage('sobre')">Sobre</a></li>
+                    <li><a onclick="showPage('contato')">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== HOME ===== -->
+    <div id="page-home" class="page-content active">
+        <section class="hero">
+            <div class="container">
+                <h1>O Futuro da Tecnologia</h1>
+                <p>Explore as mais recentes inovações em inteligência artificial, computação quântica, realidade virtual e muito mais. O amanhã está sendo construído hoje.</p>
+                <a href="#" class="btn" onclick="showPage('artigos')">📚 Explorar Artigos</a>
+                <a href="#" class="btn btn-outline" onclick="showPage('videos')" style="margin-left:15px;">🎬 Assistir Vídeos</a>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="stats-banner">
+                <div><div class="stat-number">18</div><div class="stat-label">Artigos Aprofundados</div></div>
+                <div><div class="stat-number">18</div><div class="stat-label">Vídeos Exclusivos</div></div>
+                <div><div class="stat-number">3</div><div class="stat-label">Temas Cobertos</div></div>
+                <div><div class="stat-number">∞</div><div class="stat-label">Conhecimento</div></div>
+            </div>
+        </div>
+
+        <!-- Artigos em Destaque (6 na home) -->
+        <div class="container">
+            <h2 class="section-title">📚 Artigos em Destaque</h2>
+            <p class="section-subtitle">6 artigos aprofundados para começar. Acesse a página de artigos para ver todos os 18!</p>
+            <div class="articles-grid" id="articlesGridHome"></div>
+            <div style="text-align:center; margin-top:20px;">
+                <a href="#" class="btn" onclick="showPage('artigos')">Ver todos os 18 artigos →</a>
+            </div>
+        </div>
+
+        <!-- Vídeos em Destaque (TODOS OS 18) -->
+        <div class="container">
+            <h2 class="section-title">🎬 Todos os Vídeos (18)</h2>
+            <p class="section-subtitle">Confira todos os 18 vídeos sobre IA, Computação Quântica e Realidade Virtual!</p>
+            <div class="videos-grid" id="videosGrid">
+                <!-- Os 18 vídeos serão injetados via JS -->
+            </div>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="container">
+            <div class="newsletter">
+                <h2>📬 Fique por Dentro</h2>
+                <p>Receba as últimas notícias e novidades sobre tecnologia diretamente no seu e-mail.</p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <input type="email" id="emailInput" placeholder="Digite seu e-mail" required />
+                    <button type="submit" class="btn">Inscrever-se</button>
+                </form>
+                <div class="toast" id="toastMessage">✅ Inscrição confirmada!</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== PÁGINA: ARTIGOS ===== -->
+    <div id="page-artigos" class="page-content">
+        <div class="container">
+            <h2>📰 Todos os Artigos (18)</h2>
+            <p>Explore nossa coleção completa de 18 artigos aprofundados sobre tecnologia e inovação. Filtre por tema:</p>
+            <div class="filter-bar" id="articleFilterBar">
+                <button class="filter-btn active" data-afilter="all">Todos (18)</button>
+                <button class="filter-btn" data-afilter="ia">🤖 IA (6)</button>
+                <button class="filter-btn" data-afilter="hardware">⚛️ Computação Quântica (6)</button>
+                <button class="filter-btn" data-afilter="vr">🥽 Realidade Virtual (6)</button>
+            </div>
+            <div class="articles-grid" id="articlesGridFull"></div>
+        </div>
+    </div>
+
+    <!-- ===== PÁGINA: VÍDEOS ===== -->
+    <div id="page-videos" class="page-content">
+        <div class="container">
+            <h2>🎬 Todos os Vídeos (18)</h2>
+            <p>Assista aos nossos 18 vídeos sobre as tendências tecnológicas. Filtre por tema:</p>
+            <div class="filter-bar" id="videoFilterBar">
+                <button class="filter-btn active" data-vfilter="all">Todos (18)</button>
+                <button class="filter-btn" data-vfilter="ia">🤖 IA (6)</button>
+                <button class="filter-btn" data-vfilter="quantica">⚛️ Computação Quântica (6)</button>
+                <button class="filter-btn" data-vfilter="vr">🥽 Realidade Virtual (6)</button>
+            </div>
+            <div class="videos-grid" id="videosGridFull"></div>
+        </div>
+    </div>
+
+    <!-- ===== PÁGINA: SOBRE ===== -->
+    <div id="page-sobre" class="page-content">
+        <div class="container">
+            <h2>🚀 Sobre o TechWorld</h2>
+            <p>O TechWorld nasceu da paixão por tecnologia e inovação. Nosso objetivo é levar conhecimento sobre as fronteiras da ciência e da engenharia para todos.</p>
+            <br />
+            <p><strong>Missão:</strong> Democratizar o acesso à informação tecnológica de ponta.</p>
+            <p><strong>Visão:</strong> Ser a principal referência em conteúdo tech da América Latina.</p>
+            <p><strong>Valores:</strong> Inovação, transparência, educação e futuro.</p>
+            <br />
+            <p>📊 <strong>Números do TechWorld:</strong></p>
+            <ul style="color:#b0b0d0; list-style:none; padding-left:0;">
+                <li>✅ 18 artigos aprofundados</li>
+                <li>✅ 18 vídeos exclusivos</li>
+                <li>✅ 3 grandes temas</li>
+                <li>✅ +500 inscritos na newsletter</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ===== PÁGINA: CONTATO ===== -->
+    <div id="page-contato" class="page-content">
+        <div class="container">
+            <h2>📧 Contato</h2>
+            <p>Fale conosco! Estamos sempre abertos a sugestões, parcerias e perguntas.</p>
+            <br />
+            <p><strong>E-mail:</strong> contato@techworld.com</p>
+            <p><strong>Telefone:</strong> (11) 99999-9999</p>
+            <p><strong>Redes Sociais:</strong> @techworld_oficial</p>
+        </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>TechWorld</h4>
+                    <ul>
+                        <li><a onclick="showPage('sobre')">Sobre Nós</a></li>
+                        <li><a href="#">Carreiras</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Categorias</h4>
+                    <ul>
+                        <li><a onclick="filterArticles('ia')">Inteligência Artificial</a></li>
+                        <li><a onclick="filterArticles('hardware')">Computação Quântica</a></li>
+                        <li><a onclick="filterArticles('vr')">Realidade Virtual</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Redes Sociais</h4>
+                    <ul>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">GitHub</a></li>
+                        <li><a href="#">YouTube</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li><a href="mailto:contato@techworld.com">contato@techworld.com</a></li>
+                        <li><a href="tel:+5511999999999">(11) 99999-9999</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 TechWorld - Todos os direitos reservados. | Feito com ❤️ por apaixonados por tecnologia.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+    JAVASCRIPT
+    ============================================================ -->
+    <script>
+        // ============================================================
+        //  BASE DE DADOS DOS ARTIGOS (18 artigos, 6 por tema)
+        // ============================================================
+        const articlesData = [
+            // ---- INTELIGÊNCIA ARTIFICIAL (6) ----
+            {
+                id: 'a1',
+                title: 'O que é IA Generativa e como ela funciona?',
+                desc: 'Um mergulho profundo nos modelos generativos como GPT, DALL-E e Stable Diffusion. Entenda transformers, difusão e o futuro da criação de conteúdo.',
+                tag: 'Inteligência Artificial',
+                icon: '🤖',
+                category: 'ia',
+                readTime: '12 min'
+            }, {
+                id: 'a2',
+                title: 'Redes Neurais e Deep Learning: Guia Completo',
+                desc: 'Como as redes neurais artificiais imitam o cérebro humano. Arquiteturas, funções de ativação, backpropagation e as melhores práticas para treinar modelos.',
+                tag: 'Inteligência Artificial',
+                icon: '🧠',
+                category: 'ia',
+                readTime: '15 min'
+            }, {
+                id: 'a3',
+                title: 'IA na Medicina: Diagnóstico, Descoberta e Personalização',
+                desc: 'Como a IA está revolucionando a saúde: desde diagnósticos por imagem até a descoberta de novos fármacos e tratamentos personalizados baseados em genética.',
+                tag: 'Inteligência Artificial',
+                icon: '🏥',
+                category: 'ia',
+                readTime: '10 min'
+            }, {
+                id: 'a4',
+                title: 'Ética e Vieses em IA: O Desafio do Século XXI',
+                desc: 'Os perigos dos vieses algorítmicos, discriminação em sistemas de IA, privacidade de dados e como governos e empresas estão lidando com a regulação.',
+                tag: 'Inteligência Artificial',
+                icon: '⚖️',
+                category: 'ia',
+                readTime: '14 min'
+            }, {
+                id: 'a5',
+                title: 'IA e o Mercado de Trabalho: O que vai mudar?',
+                desc: 'Quais profissões serão automatizadas, quais novas carreiras vão surgir e como se preparar para a era da inteligência artificial no trabalho.',
+                tag: 'Inteligência Artificial',
+                icon: '💼',
+                category: 'ia',
+                readTime: '11 min'
+            }, {
+                id: 'a6',
+                title: 'AGI (Inteligência Artificial Geral): O Santo Graal da IA',
+                desc: 'O que é AGI, quando podemos esperar alcançá-la, os principais desafios técnicos e as implicações éticas e existenciais de uma IA com consciência.',
+                tag: 'Inteligência Artificial',
+                icon: '🌐',
+                category: 'ia',
+                readTime: '18 min'
+            },
+
+            // ---- COMPUTAÇÃO QUÂNTICA (6) ----
+            {
+                id: 'a7',
+                title: 'Computação Quântica: Fundamentos e Qubits',
+                desc: 'Entenda os princípios básicos: qubits, superposição, emaranhamento e interferência quântica. Como esses fenômenos permitem computações exponenciais.',
+                tag: 'Computação Quântica',
+                icon: '⚛️',
+                category: 'hardware',
+                readTime: '13 min'
+            }, {
+                id: 'a8',
+                title: 'Algoritmos Quânticos: Shor, Grover e muito mais',
+                desc: 'Os principais algoritmos quânticos e como eles resolvem problemas em tempo polinomial que levariam milênios em computadores clássicos.',
+                tag: 'Computação Quântica',
+                icon: '🔢',
+                category: 'hardware',
+                readTime: '16 min'
+            }, {
+                id: 'a9',
+                title: 'Supremacia Quântica: O que realmente significa?',
+                desc: 'O marco da supremacia quântica, os experimentos do Google e da IBM, e o debate sobre se já atingimos ou não esse patamar.',
+                tag: 'Computação Quântica',
+                icon: '🏆',
+                category: 'hardware',
+                readTime: '12 min'
+            }, {
+                id: 'a10',
+                title: 'Criptografia Pós-Quântica: Preparando o Futuro',
+                desc: 'Como a computação quântica vai quebrar a criptografia RSA e ECC, e quais são as novas soluções criptográficas resistentes a quânticos (PQC).',
+                tag: 'Computação Quântica',
+                icon: '🔐',
+                category: 'hardware',
+                readTime: '14 min'
+            }, {
+                id: 'a11',
+                title: 'Empresas e Startups de Computação Quântica',
+                desc: 'Quem está liderando a corrida quântica: IBM, Google, Microsoft, Rigetti, IonQ e as startups que estão trazendo inovações disruptivas.',
+                tag: 'Computação Quântica',
+                icon: '🏢',
+                category: 'hardware',
+                readTime: '10 min'
+            }, {
+                id: 'a12',
+                title: 'Aplicações Práticas da Computação Quântica',
+                desc: 'Além da criptografia: otimização logística, simulação molecular para novos materiais, descoberta de fármacos e inteligência artificial quântica.',
+                tag: 'Computação Quântica',
+                icon: '💡',
+                category: 'hardware',
+                readTime: '15 min'
+            },
+
+            // ---- REALIDADE VIRTUAL (6) ----
+            {
+                id: 'a13',
+                title: 'Realidade Virtual: A Evolução Tecnológica',
+                desc: 'Das primeiras tentativas nos anos 1990 até os headsets modernos como Meta Quest 3 e Apple Vision Pro. A história e o futuro da imersão digital.',
+                tag: 'Realidade Virtual',
+                icon: '🥽',
+                category: 'vr',
+                readTime: '12 min'
+            }, {
+                id: 'a14',
+                title: 'VR no Entretenimento: Jogos, Cinema e Experiências',
+                desc: 'Como a VR está transformando os jogos, criando novas formas de narrativa cinematográfica e experiências imersivas que vão além do entretenimento.',
+                tag: 'Realidade Virtual',
+                icon: '🎮',
+                category: 'vr',
+                readTime: '11 min'
+            }, {
+                id: 'a15',
+                title: 'VR na Educação e Treinamento Corporativo',
+                desc: 'Escolas, universidades e empresas usando VR para treinar cirurgiões, pilotos, engenheiros e muito mais. Aprendizado imersivo é o futuro.',
+                tag: 'Realidade Virtual',
+                icon: '📚',
+                category: 'vr',
+                readTime: '13 min'
+            }, {
+                id: 'a16',
+                title: 'Realidade Aumentada (AR) vs Realidade Virtual (VR)',
+                desc: 'As diferenças fundamentais entre AR e VR, casos de uso de cada tecnologia e qual delas vai dominar o mercado nos próximos anos.',
+                tag: 'Realidade Virtual',
+                icon: '🔍',
+                category: 'vr',
+                readTime: '10 min'
+            }, {
+                id: 'a17',
+                title: 'O Metaverso: Promessa ou Ilusão?',
+                desc: 'O que é o metaverso, como ele conecta VR, AR e blockchain, e se ele realmente será a próxima evolução da internet ou apenas uma moda passageira.',
+                tag: 'Realidade Virtual',
+                icon: '🌍',
+                category: 'vr',
+                readTime: '16 min'
+            }, {
+                id: 'a18',
+                title: 'VR e Saúde: Terapia, Reabilitação e Bem-Estar',
+                desc: 'Como a realidade virtual está sendo usada para tratar fobias, PTSD, reabilitação motora e até mesmo para melhorar a saúde mental e o bem-estar.',
+                tag: 'Realidade Virtual',
+                icon: '🧘',
+                category: 'vr',
+                readTime: '14 min'
+            }
+        ];
+
+        // ============================================================
+        //  BASE DE DADOS DOS VÍDEOS (18 vídeos, 6 por tema)
+        // ============================================================
+        const videosData = [
+            // ---- INTELIGÊNCIA ARTIFICIAL (6) ----
+            {
+                id: 'ia1',
+                title: 'O Futuro da IA: O que vem depois do ChatGPT?',
+                desc: 'Especialistas discutem os próximos passos da inteligência artificial e seu impacto na sociedade.',
+                tag: 'IA',
+                category: 'ia',
+                url: 'https://www.youtube.com/embed/5NgNic7yEZM'
+            }, {
+                id: 'ia2',
+                title: 'IA Generativa: Criando Arte, Música e Código',
+                desc: 'Como ferramentas como DALL-E, Midjourney e GitHub Copilot estão mudando a criatividade.',
+                tag: 'IA',
+                category: 'ia',
+                url: 'https://www.youtube.com/embed/qC5KtatMcUw'
+            }, {
+                id: 'ia3',
+                title: 'IA na Medicina: Diagnóstico e Descoberta de Fármacos',
+                desc: 'Como a IA está acelerando a descoberta de medicamentos e melhorando diagnósticos médicos.',
+                tag: 'IA',
+                category: 'ia',
+                url: 'https://www.youtube.com/embed/tSveZ8DxccI'
+            }, {
+                id: 'ia4',
+                title: 'Ética em IA: Vieses, Privacidade e Regulação',
+                desc: 'Os desafios éticos da inteligência artificial e como garantir um uso responsável.',
+                tag: 'IA',
+                category: 'ia',
+                url: 'https://www.youtube.com/embed/RzkD_rV2ZLs'
+            }, {
+                id: 'ia5',
+                title: 'IA no Trabalho: Automação e Novas Carreiras',
+                desc: 'Quais profissões serão transformadas pela IA e quais novas oportunidades vão surgir.',
+                tag: 'IA',
+                category: 'ia',
+                url: 'https://www.youtube.com/embed/5dZ_lvDgevk'
+            }, {
+                id: 'ia6',
+                title: 'AGI (Inteligência Artificial Geral): Quando chegaremos lá?',
+                desc: 'O que é AGI, quando podemos esperar e quais os riscos e benefícios para a humanidade.',
+                tag: 'IA',
+                category: 'ia',
+                url: 'https://www.youtube.com/embed/N6HXZcQ91NA'
+            },
+
+            // ---- COMPUTAÇÃO QUÂNTICA (6) ----
+            {
+                id: 'q1',
+                title: 'Computação Quântica: O Básico em 10 Minutos',
+                desc: 'Entenda qubits, superposição, emaranhamento e por que isso é tão revolucionário.',
+                tag: 'Quântica',
+                category: 'quantica',
+                url: 'https://www.youtube.com/embed/tJxcPvjbn_U'
+            }, {
+                id: 'q2',
+                title: 'Os Maiores Avanços da Computação Quântica em 2024',
+                desc: 'Principais descobertas e avanços de empresas como IBM, Google e startups quânticas.',
+                tag: 'Quântica',
+                category: 'quantica',
+                url: 'https://www.youtube.com/embed/TgHOkEz5kdU'
+            }, {
+                id: 'q3',
+                title: 'Algoritmos Quânticos: Shor, Grover e muito mais',
+                desc: 'Como os algoritmos quânticos podem quebrar criptografia e otimizar logística.',
+                tag: 'Quântica',
+                category: 'quantica',
+                url: 'https://www.youtube.com/embed/UBgO-LzrJ5Y'
+            }, {
+                id: 'q4',
+                title: 'Computadores Quânticos vs Supercomputadores Clássicos',
+                desc: 'Comparação de performance e quando os computadores quânticos vão superar os clássicos.',
+                tag: 'Quântica',
+                category: 'quantica',
+                url: 'https://www.youtube.com/embed/RrF3V9q9tss'
+            }, {
+                id: 'q5',
+                title: 'Quantum Supremacy: O que isso significa na prática?',
+                desc: 'O marco da supremacia quântica e o que ele realmente representa para a computação.',
+                tag: 'Quântica',
+                category: 'quantica',
+                url: 'https://www.youtube.com/embed/-UrdExQW0cs'
+            }, {
+                id: 'q6',
+                title: 'O Futuro da Criptografia na Era Quântica',
+                desc: 'Como a computação quântica vai quebrar a criptografia atual e quais as soluções (PQC).',
+                tag: 'Quântica',
+                category: 'quantica',
+                url: 'https://www.youtube.com/embed/lDaQ8X6JxKg'
+            },
+
+            // ---- REALIDADE VIRTUAL (6) ----
+            {
+                id: 'vr1',
+                title: 'Realidade Virtual: O Guia Completo para Iniciantes',
+                desc: 'O que é VR, como funciona e quais equipamentos você precisa para começar.',
+                tag: 'VR',
+                category: 'vr',
+                url: 'https://www.youtube.com/embed/gWf_WuUheMg'
+            }, {
+                id: 'vr2',
+                title: 'VR no Trabalho: Reuniões, Treinamento e Colaboração',
+                desc: 'Como empresas estão usando VR para treinamento, reuniões remotas e design de produtos.',
+                tag: 'VR',
+                category: 'vr',
+                url: 'https://www.youtube.com/embed/9pYpzp2k6yo'
+            }, {
+                id: 'vr3',
+                title: 'Os Melhores Jogos de Realidade Virtual em 2024',
+                desc: 'Os jogos mais inovadores e imersivos para VR, de Half-Life Alyx a novos lançamentos.',
+                tag: 'VR',
+                category: 'vr',
+                url: 'https://www.youtube.com/embed/Xk2dArTGLDs'
+            }, {
+                id: 'vr4',
+                title: 'VR na Educação: Aprendendo com Imersão Total',
+                desc: 'Como escolas e universidades estão usando VR para ensinar história, ciências e muito mais.',
+                tag: 'VR',
+                category: 'vr',
+                url: 'https://www.youtube.com/embed/uxZfQH-l5K8'
+            }, {
+                id: 'vr5',
+                title: 'Realidade Aumentada (AR) vs Realidade Virtual (VR)',
+                desc: 'Entenda as diferenças, aplicações e qual tecnologia vai dominar o futuro.',
+                tag: 'VR',
+                category: 'vr',
+                url: 'https://www.youtube.com/embed/0k0rRal7TjI'
+            }, {
+                id: 'vr6',
+                title: 'O Metaverso: A Promessa e a Realidade',
+                desc: 'O que é o metaverso, como a VR e AR se conectam e qual o futuro desse conceito.',
+                tag: 'VR',
+                category: 'vr',
+                url: 'https://www.youtube.com/embed/FrVZ9rRw6vY'
+            }
+        ];
+
+        // ============================================================
+        //  FUNÇÃO PARA RENDERIZAR ARTIGOS
+        // ============================================================
+        function renderArticles(containerId, filter = 'all', limit = 0) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+
+            let filtered = filter === 'all' ? articlesData : articlesData.filter(a => a.category === filter);
+
+            // Se limit > 0, pega apenas os primeiros
+            if (limit > 0) {
+                filtered = filtered.slice(0, limit);
+            }
+
+            container.innerHTML = filtered.map(article => `
+                        <div class="article-card" data-category="${article.category}">
+                            <div class="article-icon">${article.icon}</div>
+                            <h3>${article.title}</h3>
+                            <p>${article.desc}</p>
+                            <span class="article-tag">${article.tag}</span>
+                            <div class="read-time">📖 ${article.readTime} de leitura</div>
+                        </div>
+                    `).join('');
+        }
+
+        // ============================================================
+        //  FUNÇÃO PARA RENDERIZAR VÍDEOS
+        // ============================================================
+        function renderVideos(containerId, filter = 'all') {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+
+            const filtered = filter === 'all' ? videosData : videosData.filter(v => v.category === filter);
+
+            container.innerHTML = filtered.map(video => `
+                        <div class="video-card" data-category="${video.category}">
+                            <div class="video-wrapper">
+                                <iframe src="${video.url}" allowfullscreen loading="lazy"></iframe>
+                            </div>
+                            <div class="video-info">
+                                <h4>${video.title}</h4>
+                                <p>${video.desc}</p>
+                                <span class="video-tag">🎯 ${video.tag}</span>
+                            </div>
+                        </div>
+                    `).join('');
+        }
+
+        // ============================================================
+        //  MENU MOBILE
+        // ============================================================
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('open');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navLinks.classList.remove('open');
+            });
+        });
+
+        // ============================================================
+        //  NAVEGAÇÃO ENTRE PÁGINAS
+        // ============================================================
+        function showPage(page) {
+            document.querySelectorAll('.page-content').forEach(el => el.classList.remove('active'));
+            const target = document.getElementById('page-' + page);
+            if (target) target.classList.add('active');
+
+            document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                if (link.textContent.trim().toLowerCase() === page ||
+                    (page === 'home' && link.textContent.trim() === 'Início')) {
+                    link.classList.add('active');
+                }
+            });
+
+            if (page === 'videos') {
+                renderVideos('videosGridFull', 'all');
+                // Sincroniza filtros de vídeo
+                document.querySelectorAll('#videoFilterBar .filter-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        document.querySelectorAll('#videoFilterBar .filter-btn').forEach(b => b.classList
+                            .remove('active'));
+                        this.classList.add('active');
+                        renderVideos('videosGridFull', this.dataset.vfilter);
+                    });
+                });
+            }
+
+            if (page === 'artigos') {
+                renderArticles('articlesGridFull', 'all');
+                // Sincroniza filtros de artigos
+                document.querySelectorAll('#articleFilterBar .filter-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        document.querySelectorAll('#articleFilterBar .filter-btn').forEach(b => b
+                            .classList.remove('active'));
+                        this.classList.add('active');
+                        renderArticles('articlesGridFull', this.dataset.afilter);
+                    });
+                });
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ============================================================
+        //  FILTRO DE ARTIGOS (para a home e footer)
+        // ============================================================
+        function filterArticles(category) {
+            // Filtra os artigos da home
+            renderArticles('articlesGridHome', category);
+
+            // Se não estiver na home, navega para artigos
+            const homePage = document.getElementById('page-home');
+            if (!homePage.classList.contains('active')) {
+                showPage('artigos');
+                // Atualiza o filtro na página de artigos
+                setTimeout(() => {
+                    document.querySelectorAll('#articleFilterBar .filter-btn').forEach(btn => {
+                        btn.classList.remove('active');
+                        if (btn.dataset.afilter === category) btn.classList.add('active');
+                    });
+                    renderArticles('articlesGridFull', category);
+                }, 100);
+            }
+        }
+
+        // ============================================================
+        //  NEWSLETTER
+        // ============================================================
+        const form = document.getElementById('newsletterForm');
+        const toast = document.getElementById('toastMessage');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('emailInput').value.trim();
+            if (!email) return;
+
+            let subscribers = JSON.parse(localStorage.getItem('techworld_subscribers') || '[]');
+            if (!subscribers.includes(email)) {
+                subscribers.push(email);
+                localStorage.setItem('techworld_subscribers', JSON.stringify(subscribers));
+                toast.textContent = '✅ Inscrição confirmada para ' + email + '!';
+            } else {
+                toast.textContent = 'ℹ️ Este e-mail já está inscrito.';
+            }
+
+            toast.classList.add('show');
+            form.reset();
+            setTimeout(() => toast.classList.remove('show'), 4000);
+        });
+
+        // ============================================================
+        //  INICIALIZAÇÃO
+        // ============================================================
+
+        // --- ARTIGOS EM DESTAQUE NA HOME (6 primeiros) ---
+        renderArticles('articlesGridHome', 'all', 6);
+
+        // --- VÍDEOS NA HOME (TODOS OS 18) ---
+        renderVideos('videosGrid', 'all');
+
+        // --- ARTIGOS COMPLETOS NA PÁGINA DE ARTIGOS ---
+        renderArticles('articlesGridFull', 'all');
+
+        // --- VÍDEOS COMPLETOS NA PÁGINA DE VÍDEOS ---
+        renderVideos('videosGridFull', 'all');
+
+        // Mostra a home
+        showPage('home');
+    </script>
+</body>
+</html>
+
+
